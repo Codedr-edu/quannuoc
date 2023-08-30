@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <style>
+        .btn-light{
+            color:#042A2B
+        }
+        .btn-outline-light{
+            color:#F4EDED;
+            border: 2px solid #F4EDED;
+        }
+        .navbar{
+            box-shadow: none;
+        }
+        .btn-green{
+          background-color: #3A8038;
+          color:#F4EDED;
+        }
+        .btn-green:hover{
+          background-color: transparent;
+          color:#3A8038;
+          border: 2px solid #3A8038;
+        }
+        .btn-outline-green{
+          border: 2px solid #042A2B;
+          color: #042A2B;
+        }
+        .btn-outline-green:hover{
+          border: 2px solid #042A2B;
+          color: #F4EDED;
+          background-color: #042A2B;
+        }
+    </style>
+</head>
+<header>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark" style="background-color: #3A8038;">
+        <!-- Container wrapper -->
+        <div class="container">
+          <!-- Navbar brand -->
+          <a class="navbar-brand " href="https://mdbgo.com/">
+            Codedr
+          </a>
+      
+          <!-- Toggle button -->
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#navbarButtonsExample"
+            aria-controls="navbarButtonsExample"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+      
+          <!-- Collapsible wrapper -->
+          <div class="collapse navbar-collapse" id="navbarButtonsExample">
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Source code preview</a>
+              </li>
+            </ul>
+            <!-- Left links -->
+      
+            <div class="d-flex align-items-center">
+              <a href="" type="button" class="btn btn-outline-light px-3 me-2">
+                Want a website?
+              </a>
+            </div>
+          </div>
+          <!-- Collapsible wrapper -->
+        </div>
+        <!-- Container wrapper -->
+      </nav>
+</header>
+<main>
+    <div class="container">
+        <br>
+        <div class="columns">
+          <div class="column">
+              <a href="{% url 'home' %}" class="btn btn-green w-100">Trang chủ</a>
+          </div>
+          <div class="column">
+              <a href="{% url 'drink_group' %}" class="btn btn-green w-100">Nhóm Món</a>
+          </div>
+          <div class="column">
+              <a href="{% url 'buy_ingredient' %}" class="btn btn-green w-100">Nguyên liệu</a>
+          </div>
+          <div class="column">
+              <a href="{% url 'drink' %}" class="btn btn-green w-100">Danh sách món & Công thức</a>
+          </div>
+          <div class="column">
+              <a href="{% url 'log_out' %}" class="btn btn-outline-green w-100">Đăng xuất</a>
+          </div>
+      </div>
+    <br>
+        <h1 class="title is-1 text-center">bảng công thức của món số {{id}}</h1>
+            <div class="text-center d-flex aligns-items-center justify-content-center text-center w-75 mx-auto">
+                <table id="data" class="table shadow-lg table-striped rounded">
+                    <thead class="text-dark">
+                        <th class="text-dark">Tên nguyên liệu</th>
+                        <th class="text-dark">Đơn vị mua vào</th>
+                        <th class="text-dark">Đổi đơn vị</th>
+                        <th class="text-dark">Đơn vị chế biến</th>
+                        <th class="text-dark">Số lượng để chế biến</th>
+                        <th class="text-dark">Giá nhập</th>
+                        <th class="text-dark">Chỉnh sửa</th>
+                        <th class="text-dark">Xóa</th>
+                    </thead>
+                    <tbody class="text-dark">
+                            {% for post in object_list %}
+                            <tr class="text-dark">
+                                <td class="text-dark">{{ post.name }}</td>
+                                <td class="text-dark">{{ post.buy_unit }}</td>
+                                <td class="text-dark">{{ post.change_value }}</td>
+                                <td class="text-dark">{{ post.change_unit }}</td>
+                                <td class="text-dark">{{ post.value }}{{post.change_unit}}</td>
+                                <td class="text-dark">{{ post.price }}₫</td>
+                                <td class="text-dark"><a class="btn btn-green" href="{% url 'change_ingredient2' id=post.id %}">Sửa</a></td>
+                                <td class="text-dark"><a class="btn btn-outline-green" href="{% url 'delete_ingredient' id=post.id %}">Xóa</a></td>
+                            </tr>
+                            {% endfor %}
+                </table>
+              </div>
+              <br>
+              <div class="text-center d-flex aligns-items-center justify-content-center text-center w-75 mx-auto">
+                <a href="" class="btn btn-green w-100">Tính lợi nhuận cho món</a>
+                <br>
+                  <!--<a href="" class="btn btn-green w-100">Chưa đủ nguyên liệu?</a>-->
+              </div>
+    </div>
+</main>
+    <footer class="fixed-bottom" style="margin-bottom: 10px;">
+        <div class="container">
+            <p class="text-center text-muted">Bản quyền thuộc về Codedr(Hoàng Hùng Anh)</p>
+        </div>
+    </footer>
+</body>
+</html>
